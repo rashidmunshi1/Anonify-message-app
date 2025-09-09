@@ -6,6 +6,7 @@ Dockerfile*
 .gitignore
 README.md
 .env
+!.env.production
 .nyc_output
 .nyc_output
 coverage
