@@ -33,6 +33,9 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts
 # Copy application code
 COPY --chown=www-data:www-data . /var/www/html
 
+# Copy production environment file
+COPY .env.production /var/www/html/.env
+
 # Run composer dump-autoload
 RUN composer dump-autoload --optimize
 

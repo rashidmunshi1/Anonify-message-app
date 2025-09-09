@@ -4,10 +4,8 @@ set -e
 # Wait for database to be ready
 echo "Setting up Laravel application..."
 
-# Generate application key if not set
-if [ -z "$APP_KEY" ]; then
-    php artisan key:generate --force
-fi
+# Always generate application key for production
+php artisan key:generate --force
 
 # Run database migrations
 php artisan migrate --force
