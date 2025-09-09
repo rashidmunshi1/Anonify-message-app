@@ -2,15 +2,12 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "dev": "echo 'Using CDN for assets'",
+        "build": "echo 'Build skipped - using CDN'"
     },
     "devDependencies": {
-        "autoprefixer": "^10.4.21",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0.0",
-        "postcss": "^8.5.6",
-        "tailwindcss": "^4.1.13",
         "vite": "^5.0.0"
     }
 }
