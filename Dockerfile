@@ -42,13 +42,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache && \
     chown www-data:www-data /var/www/html/.env
 
-# Enable Apache rewrite module
-RUN a2enmod rewrite
-
-# Configure Apache document root
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf && \
-    sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+# Enable Apache modules
+RUN a2enmod rewrite headers
 
 # Copy and make startup script executable
 COPY docker-entrypoint.sh /usr/local/bin/

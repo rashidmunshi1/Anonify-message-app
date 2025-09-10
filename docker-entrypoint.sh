@@ -6,10 +6,29 @@ echo "Setting up Laravel application..."
 
 # Set PORT if not provided (Railway provides $PORT)
 export PORT=${PORT:-80}
+echo "Using PORT: $PORT"
 
 # Update Apache ports configuration
-sed -i "s/Listen 80/Listen $PORT/g" /etc/apache2/ports.conf
-sed -i "s/:80>/:$PORT>/g" /etc/apache2/sites-available/000-default.conf
+echo "Listen $PORT" > /etc/apache2/ports.conf
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Create new virtual host configuration
+cat > /etc/apache2/sites-available/000-default.conf << EOF
+<VirtualHost *:$PORT>
+    ServerName localhost
+    DocumentRoot /var/www/html/public
+
+    <Directory /var/www/html/public>
+        AllowOverride All
+        Require all granted
+        Options Indexes FollowSymLinks
+        DirectoryIndex index.php index.html
+    </Directory>
+
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
 
 # Always generate application key for production  
 php artisan key:generate --force
