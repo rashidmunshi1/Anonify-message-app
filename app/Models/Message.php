@@ -12,7 +12,9 @@ class Message extends Model
     protected $fillable = [
         'user_id',
         'content',
-        'read_at'
+        'read_at',
+        'ip_address',
+        'user_agent'
     ];
 
     protected $casts = [

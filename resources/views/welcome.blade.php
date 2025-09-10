@@ -3,16 +3,29 @@
 @section('title', 'Anonify - Send Anonymous Messages')
 
 @section('content')
-<!-- Hero Section with Background -->
-<div class="relative">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50 opacity-60"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<!-- Enhanced Hero Section with Advanced Background -->
+<div class="relative min-h-screen overflow-hidden">
+    <!-- Multi-layer Animated Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50 animate-moving-gradient"></div>
+    <div class="absolute inset-0 bg-pattern-dots opacity-30"></div>
+    <div class="absolute inset-0 bg-pattern-waves opacity-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse-glow"></div>
     
-    <!-- Floating Elements (smaller and positioned better) -->
-    <div class="hidden md:block absolute top-10 left-10 text-3xl opacity-20 animate-float">💌</div>
-    <div class="hidden md:block absolute top-16 right-16 text-2xl opacity-15 animate-bounce" style="animation-delay: 1s;">🔒</div>
-    <div class="hidden md:block absolute top-20 right-32 text-3xl opacity-20 animate-float" style="animation-delay: 0.5s;">📝</div>
+    <!-- Floating Animated Shapes -->
+    <div class="floating-shapes">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+    
+    <!-- Enhanced Floating Elements with More Animations -->
+    <div class="hidden md:block absolute top-10 left-10 text-4xl opacity-25 animate-wave">💌</div>
+    <div class="hidden md:block absolute top-16 right-16 text-3xl opacity-20 animate-sparkle" style="animation-delay: 1s;">🔒</div>
+    <div class="hidden md:block absolute top-20 right-32 text-4xl opacity-25 animate-float" style="animation-delay: 0.5s;">📝</div>
+    <div class="hidden md:block absolute bottom-32 left-16 text-3xl opacity-20 animate-rotate" style="animation-delay: 2s;">⭐</div>
+    <div class="hidden md:block absolute bottom-40 right-20 text-2xl opacity-15 animate-wave" style="animation-delay: 3s;">🎭</div>
+    <div class="hidden md:block absolute top-1/3 left-1/4 text-5xl opacity-10 animate-pulse-glow" style="animation-delay: 1.5s;">🌟</div>
+    <div class="hidden md:block absolute bottom-1/3 right-1/4 text-4xl opacity-15 animate-float" style="animation-delay: 2.5s;">✨</div>
 
 <div class="relative text-center px-4 py-8">
     <div class="mb-6 animate-fade-in">
@@ -43,44 +56,44 @@
     </div>
     
     @auth
-        <div class="max-w-lg mx-auto bg-white rounded-2xl shadow-lg p-6 border border-gray-100 transform hover:scale-105 transition-all duration-300 hover:shadow-2xl animate-float hover-glow">
+        <div class="max-w-lg mx-auto bg-glass rounded-2xl shadow-2xl p-6 border border-orange-200/30 transform hover:scale-105 transition-all duration-500 hover:shadow-3xl animate-float hover-glow backdrop-blur-md">
             <div class="text-center mb-4">
-                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 transform hover:rotate-12 transition-transform duration-300 hover:bg-orange-200">
-                    <span class="text-xl animate-pulse">🔗</span>
+                <div class="w-14 h-14 bg-gradient-to-br from-orange-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-3 transform hover:rotate-12 transition-transform duration-300 hover:scale-110 animate-pulse-glow">
+                    <span class="text-2xl animate-sparkle">🔗</span>
                 </div>
-                <h2 class="text-xl font-bold text-gray-800 mb-2">Your Personal Link</h2>
+                <h2 class="text-xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent mb-2">Your Personal Link</h2>
                 <p class="text-gray-600 text-sm">Share this link to receive anonymous messages</p>
             </div>
             
-            <div class="bg-gray-50 p-3 rounded-xl border-2 border-dashed border-gray-200 mb-4">
-                <code class="text-xs text-orange-600 font-medium break-all">{{ url('/' . auth()->user()->username) }}</code>
+            <div class="bg-gradient-to-r from-orange-50 to-pink-50 p-4 rounded-xl border-2 border-dashed border-orange-300/50 mb-4 animate-pulse-glow">
+                <code class="text-sm text-orange-700 font-medium break-all">{{ url('/' . auth()->user()->username) }}</code>
             </div>
             
-            <button onclick="copyLink()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 px-5 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl active:scale-95 relative overflow-hidden group">
+            <button onclick="copyLink()" class="w-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 hover:from-orange-600 hover:via-pink-600 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl active:scale-95 relative overflow-hidden group animate-moving-gradient">
                 <span class="relative z-10">📋 Copy Link</span>
-                <div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-pink-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </button>
         </div>
     @else
         <div class="max-w-md mx-auto">
-            <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mb-6 transform hover:scale-105 transition-all duration-500 hover:shadow-2xl hover:border-orange-200">
+            <div class="bg-glass rounded-2xl shadow-2xl p-6 border border-orange-200/30 mb-6 transform hover:scale-105 transition-all duration-500 hover:shadow-3xl hover:border-orange-300/50 backdrop-blur-md">
                 <div class="text-center mb-5">
-                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 transform hover:rotate-12 transition-all duration-300 hover:bg-orange-200 hover:scale-110">
-                        <span class="text-2xl hover:animate-bounce">💬</span>
+                    <div class="w-18 h-18 bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 transform hover:rotate-12 transition-all duration-300 hover:scale-110 animate-pulse-glow">
+                        <span class="text-3xl animate-wave">💬</span>
                     </div>
-                    <h2 class="text-xl font-semibold text-gray-800 mb-2 hover:text-orange-500 transition-colors duration-300">Get Started</h2>
+                    <h2 class="text-xl font-semibold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent mb-2">Get Started</h2>
                     <p class="text-gray-600 text-sm">Create your account and get your personalized link</p>
                 </div>
                 
-                <a href="{{ route('register') }}" class="w-full inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl active:scale-95 text-center relative overflow-hidden group animate-pulse">
+                <a href="{{ route('register') }}" class="w-full inline-block bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 hover:from-orange-600 hover:via-pink-600 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl active:scale-95 text-center relative overflow-hidden group animate-moving-gradient">
                     <span class="relative z-10">🚀 Create Account</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </a>
             </div>
             
-            <p class="text-gray-500 text-center">
+            <p class="text-gray-600 text-center bg-glass p-3 rounded-lg backdrop-blur-sm">
                 Already have an account? 
-                <a href="{{ route('login') }}" class="text-orange-500 hover:text-orange-600 font-medium hover:underline">Sign in here</a>
+                <a href="{{ route('login') }}" class="text-orange-500 hover:text-pink-500 font-medium hover:underline transition-colors duration-300">Sign in here</a>
             </p>
         </div>
     @endauth

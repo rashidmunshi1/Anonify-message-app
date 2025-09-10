@@ -15,6 +15,7 @@
     <meta name="theme-color" content="#f97316">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Enhanced Background Animation Styles */
         @keyframes fade-in {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -35,6 +36,35 @@
             50% { transform: translateY(-10px); }
         }
         
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.1); }
+        }
+        
+        @keyframes moving-gradient {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+        
         .animate-fade-in {
             animation: fade-in 1s ease-out;
         }
@@ -53,8 +83,95 @@
             animation: float 3s ease-in-out infinite;
         }
         
+        .animate-rotate {
+            animation: rotate 20s linear infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .animate-moving-gradient {
+            background-size: 400% 400%;
+            animation: moving-gradient 15s ease infinite;
+        }
+        
+        .animate-sparkle {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        .animate-wave {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
         .hover-glow:hover {
             box-shadow: 0 0 30px rgba(251, 146, 60, 0.5);
+        }
+        
+        /* Background Pattern Styles */
+        .bg-pattern-dots {
+            background-image: radial-gradient(circle, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .bg-pattern-waves {
+            background-image: 
+                linear-gradient(45deg, transparent 40%, rgba(249, 115, 22, 0.1) 40%, rgba(249, 115, 22, 0.1) 60%, transparent 60%),
+                linear-gradient(-45deg, transparent 40%, rgba(236, 72, 153, 0.1) 40%, rgba(236, 72, 153, 0.1) 60%, transparent 60%);
+            background-size: 30px 30px;
+        }
+        
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Floating Elements */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(249, 115, 22, 0.2), rgba(236, 72, 153, 0.2));
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -2s;
+        }
+        
+        .floating-shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: -4s;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .floating-shapes {
+                display: none;
+            }
         }
     </style>
 </head>
