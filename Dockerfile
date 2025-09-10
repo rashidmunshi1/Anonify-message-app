@@ -1,5 +1,5 @@
-# Use PHP 8.2 with Apache
-FROM php:8.2-apache
+# Use PHP 8.2 FPM (lighter than Apache)
+FROM php:8.2-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -42,15 +42,12 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache && \
     chown www-data:www-data /var/www/html/.env
 
-# Enable Apache modules
-RUN a2enmod rewrite headers
-
 # Copy and make startup script executable
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Expose port (Railway uses $PORT)
-EXPOSE ${PORT:-80}
+EXPOSE ${PORT:-8000}
 
 # Use custom entrypoint
 CMD ["docker-entrypoint.sh"]

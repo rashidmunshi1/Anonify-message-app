@@ -1,34 +1,14 @@
 #!/bin/bash
 set -e
 
-# Wait for database to be ready
 echo "Setting up Laravel application..."
 
 # Set PORT if not provided (Railway provides $PORT)
-export PORT=${PORT:-80}
+export PORT=${PORT:-8000}
 echo "Using PORT: $PORT"
 
-# Update Apache ports configuration
-echo "Listen $PORT" > /etc/apache2/ports.conf
-echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-# Create new virtual host configuration
-cat > /etc/apache2/sites-available/000-default.conf << EOF
-<VirtualHost *:$PORT>
-    ServerName localhost
-    DocumentRoot /var/www/html/public
-
-    <Directory /var/www/html/public>
-        AllowOverride All
-        Require all granted
-        Options Indexes FollowSymLinks
-        DirectoryIndex index.php index.html
-    </Directory>
-
-    ErrorLog \${APACHE_LOG_DIR}/error.log
-    CustomLog \${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-EOF
+# Change to Laravel directory
+cd /var/www/html
 
 # Always generate application key for production  
 php artisan key:generate --force
@@ -52,9 +32,9 @@ php artisan migrate --force || {
     fi
 }
 
-# Cache configuration and routes for production
+# Cache configuration for production
 php artisan config:cache
-php artisan route:cache
 
-# Start Apache
-exec apache2-foreground
+echo "Starting PHP server on 0.0.0.0:$PORT"
+# Start PHP built-in server
+exec php artisan serve --host=0.0.0.0 --port=$PORT
